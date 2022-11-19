@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.net.ServerSocket;
+import java.nio.file.Files;
 import org.eclipse.jetty.server.Server;
 import org.junit.After;
 import org.junit.Before;
@@ -121,7 +122,7 @@ public class ServiceLiveTest<T extends Service> {
   }
 
   private File createTemporaryConfigFile(int port, int adminPort) throws IOException {
-    File temporaryConfig = File.createTempFile("dropwizard", ".yml");
+    File temporaryConfig = Files.createTempFile("dropwizard", ".yml").toFile();
     temporaryConfig.deleteOnExit();
 
     String content = createConfigurationAsYaml() +
